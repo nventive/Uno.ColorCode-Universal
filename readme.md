@@ -1,3 +1,11 @@
+# ColorCode-Universal port for Uno
+
+This port allows for [Uno-based apps](http://platform.uno) to use [ColorCode-Universal](https://github.com/nventive/Uno.ColorCode-Universal) on Windows, iOS, Android and WebAssembly.
+
+The following nuget packages are available:
+- [Uno.ColorCode.UWP](https://www.nuget.org/packages/Uno.ColorCode.UWP)
+- [Uno.ColorCode.Core](https://www.nuget.org/packages/Uno.ColorCode.Core)
+
 # ColorCode-Universal
 
 This is a port of [ColorCode](https://colorcode.codeplex.com/) to .NET Standard. The original Html only formatter has been separated from the Logic, so now it can produce Syntax Highlighted code for any output.

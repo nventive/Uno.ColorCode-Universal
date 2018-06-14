@@ -67,7 +67,8 @@ Task("Build")
     Information("\nBuilding Solution");
     var buildSettings = new MSBuildSettings
     {
-        MaxCpuCount = 0
+        MaxCpuCount = 0,
+		MSBuildPlatform = MSBuildPlatform.x86
     }
     .SetConfiguration("Release")
     .WithTarget("Restore;Build")

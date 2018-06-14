@@ -6,7 +6,7 @@
 		<RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.Core</AssemblyName>
 		<PackageId>Uno.ColorCode.Core</PackageId>
-		<Title>ColorCode-Universal</Title>
+		<Title>Uno.ColorCode.Core</Title>
     <Description>The Core Library, containing the Parser, and the classes to create your own formatter.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting</PackageTags>
   </PropertyGroup>

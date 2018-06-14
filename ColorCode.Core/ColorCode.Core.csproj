@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-    <RootNamespace>ColorCode</RootNamespace>
+		<TargetFrameworks>netstandard1.4;netstandard2.0;xamarinios10;MonoAndroid80;uap10.0</TargetFrameworks>
+		<RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.Core</AssemblyName>
-    <Title>ColorCode-Universal</Title>
+		<PackageId>ColorCode.Core</PackageId>
+		<Title>ColorCode-Universal</Title>
     <Description>The Core Library, containing the Parser, and the classes to create your own formatter.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting</PackageTags>
   </PropertyGroup>

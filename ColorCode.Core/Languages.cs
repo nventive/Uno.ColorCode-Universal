@@ -36,7 +36,7 @@ namespace ColorCode
             Load<Php>();
             Load<Css>();
             Load<Cpp>();
-            Load<Java>();
+            Load<ColorCode.Compilation.Languages.Java>();
             Load<PowerShell>();
             Load<Typescript>();
             Load<FSharp>();

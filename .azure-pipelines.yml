@@ -1,0 +1,28 @@
+pool:
+  name: 'Hosted VS2017'
+
+trigger:
+  branches:
+    include:
+      - uno
+
+pr:
+  paths:
+    exclude:
+      - 'docs/**/*.*'
+      - 'Readme.md'
+  branches:
+    include:
+      - uno
+
+steps:
+  - checkout: self
+    clean: true
+
+  - powershell: 'build/build.ps1'
+
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)/build/nupkg/'
+      Contents: '*.nupkg'
+      TargetFolder: $(Build.ArtifactStagingDirectory)

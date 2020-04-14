@@ -2,14 +2,17 @@
 <Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>uap10.0;netstandard2.0;xamarinios10;MonoAndroid80</TargetFrameworks>
+    <TargetFrameworks>uap10.0;netstandard2.0;xamarinios10;MonoAndroid90;xamarinmac20</TargetFrameworks>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.UWP</AssemblyName>
 		<PackageId>Uno.ColorCode.UWP</PackageId>
     <Title>Uno.ColorCode.UWP</Title>
     <Description>Contains the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting UWP RichTextBlock Document InlineCollection</PackageTags>
-  </PropertyGroup>
+
+		<!--https://github.com/xamarin/AndroidSupportComponents/issues/176-->
+		<XamarinAndroidSupportSkipVerifyVersions>true</XamarinAndroidSupportSkipVerifyVersions>
+	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'uap10.0'">
 		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.4" />
@@ -19,8 +22,8 @@
     <ProjectReference Include="..\ColorCode.Core\ColorCode.Core.csproj" />
   </ItemGroup>
 	
-	<ItemGroup Condition="'$(TargetFrameworkIdentifier)' == 'MonoAndroid' or '$(TargetFrameworkIdentifier)' == 'Xamarin.iOS' or '$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Uno.UI" Version="1.31.0-dev.52" />
+	<ItemGroup Condition="'$(TargetFrameworkIdentifier)' == 'MonoAndroid' or '$(TargetFrameworkIdentifier)' == 'Xamarin.iOS' or '$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'xamarinmac20'">
+		<PackageReference Include="Uno.UI" Version="2.0.532" />
 	</ItemGroup>
 	
 </Project>

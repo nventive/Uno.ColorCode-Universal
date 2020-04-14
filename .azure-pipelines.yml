@@ -1,28 +1,56 @@
-pool:
-  name: 'Hosted VS2017'
+jobs:
+- job: Windows
 
-trigger:
-  branches:
-    include:
-      - uno
+  pool:
+    vmImage: 'windows-2019'
+    
+  variables:
+    NUGET_PACKAGES: $(Agent.WorkFolder)\.nuget
 
-pr:
-  paths:
-    exclude:
-      - 'docs/**/*.*'
-      - 'Readme.md'
-  branches:
-    include:
-      - uno
-
-steps:
+  steps:
   - checkout: self
     clean: true
 
-  - powershell: 'build/build.ps1'
+  - task: NuGetToolInstaller@0
+    inputs:
+      versionSpec: 4.9.1
+      checkLatest: false
+    
+  - task: GitVersion@5
+    inputs:
+      updateAssemblyInfo: false
+      configFilePath: gitversion.yml
+
+  - powershell: .\build\build.ps1
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/build/nupkg/'
-      Contents: '*.nupkg'
-      TargetFolder: $(Build.ArtifactStagingDirectory)
+      SourceFolder: $(build.sourcesdirectory)
+      Contents: '$(build.sourcesdirectory)\build\nupkg\*.nupkg'
+      TargetFolder: $(build.artifactstagingdirectory)
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+  - task: DotNetCoreInstaller@0
+    inputs:
+      version: '2.1.504'
+
+  - task: PowerShell@2
+    displayName: Authenticode Sign Packages
+    inputs:
+      filePath: build/Sign-Package.ps1
+    env:
+      SignClientUser: $(SignClientUser)
+      SignClientSecret: $(SignClientSecret)
+      SignPackageName: "Uno.PackageDiff"
+      SignPackageDescription: "Uno.PackageDiff"
+      ArtifactDirectory: $(build.artifactstagingdirectory)
+    condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
+
+  - task: PublishBuildArtifacts@1
+    condition: always()
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      ArtifactName: drop
+      ArtifactType: Container

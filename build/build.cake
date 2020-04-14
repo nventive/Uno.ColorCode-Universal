@@ -1,4 +1,6 @@
-#addin "Cake.Powershell"
+#addin "nuget:?package=Cake.FileHelpers&version=3.2.1"
+#addin "nuget:?package=Cake.Powershell&version=0.4.8"
+#tool "nuget:?package=GitVersion.CommandLine&version=5.0.1"
 
 using System;
 //////////////////////////////////////////////////////////////////////

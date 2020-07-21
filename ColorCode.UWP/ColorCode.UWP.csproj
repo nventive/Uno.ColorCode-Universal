@@ -18,12 +18,11 @@
 		<PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.4" />
   </ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="Uno.UI" Version="3.0.0-dev.899" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ColorCode.Core\ColorCode.Core.csproj" />
   </ItemGroup>
-	
-	<ItemGroup Condition="'$(TargetFrameworkIdentifier)' == 'MonoAndroid' or '$(TargetFrameworkIdentifier)' == 'Xamarin.iOS' or '$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'xamarinmac20'">
-		<PackageReference Include="Uno.UI" Version="3.0.0-dev.840" />
-	</ItemGroup>
-	
 </Project>
